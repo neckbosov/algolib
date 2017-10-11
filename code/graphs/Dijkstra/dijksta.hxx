@@ -39,7 +39,7 @@ void dijkstra_heap(const vector<vector<pair<int, long long>>>& g, vector<long lo
 	d.assign(g.size(), LLONG_MAX);
 	d[start] = 0;
 	priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> q;
-	q.push({start, d[start]});
+	q.push({d[start], start});
 	while (!q.empty()) {
 		auto v = q.top();
 		if (v.first != d[v.second]) continue;
@@ -55,7 +55,7 @@ void dijkstra_heap(const vector<vector<pair<int, double>>>& g, vector<double>& d
 	d.assign(g.size(), LLONG_MAX);
 	d[start] = 0;
 	priority_queue<pair<double, int>, vector<pair<double, int>>, greater<pair<double, int>>> q;
-	q.push({start, d[start]});
+	q.push({d[start], start});
 	while (!q.empty()) {
 		auto v = q.top();
 		if (v.first != d[v.second]) continue;
