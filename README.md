@@ -1,2 +1,2 @@
 # algolib
-Library with fast algorithms for olympiad programming
+My personal library with fast algorithms for olympiad programming
