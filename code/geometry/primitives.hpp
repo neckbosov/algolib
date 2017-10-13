@@ -10,6 +10,7 @@ struct point {
 	point<T> operator-(point<T> t) { return point<T>(x - t.x, y - t.y); }
 	T operator*(point<T> t) { return x * t.y - y * t.x; }
 	T slen() { return x * x + y * y; }
+	bool operator<(point<T> t) { return x < t.x || (x == t.x && y < t.y); }
 	double len() { return hypot(x, y); }
 	double angle() { return atan2(x, y); }
 };
@@ -34,7 +35,7 @@ struct line {
 	line(point<T> x, point<T> y) {
 		a = x.y - y.y;
 		b = y.x - x.x;
-		c = -a * x.x - b.x.y;
+		c = -a * x.x - b * x.y;
 		T g = gcd(gcd(a, b), c);
 		a /= g;
 		b /= g;
@@ -62,4 +63,40 @@ struct line {
 		return ans;
 	}
 	double dist(point<T> t) { return abs(a * t.x + b * t.y + c) / sqrt(a * a + b * b); }
+};
+template <>
+struct line<double> {
+	double a, b, c;
+	line() {}
+	line(point<double> x, point<double> y) {
+		a = x.y - y.y;
+		b = y.x - x.x;
+		c = -a * x.x - b * x.y;
+		if (a < 0 || (a == 0 && b < 0)) {
+			a *= -1;
+			b *= -1;
+			c *= -1;
+		}
+		double z = hypot(a, b);
+		a /= z;
+		b /= z;
+		c /= z;
+	}
+	point<double> norm() {
+		point<double> ans(b, a);
+		if (ans.x < 0 || (ans.x == 0 && ans.y < 0)) {
+			ans.x *= -1;
+			ans.y *= -1;
+		}
+		return ans;
+	}
+	point<double> vec() {
+		point<double> ans(a, -b);
+		if (ans.x < 0 || (ans.x == 0 && ans.y < 0)) {
+			ans.x *= -1;
+			ans.y *= -1;
+		}
+		return ans;
+	}
+	double dist(point<double> t) { return abs(a * t.x + b * t.y + c) / sqrt(a * a + b * b); }
 };
