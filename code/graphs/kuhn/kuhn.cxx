@@ -5,6 +5,7 @@ vector<int> pa, u, pal;
 int cc;
 vector<int> e;
 vector<vector<int>> g;
+
 bool dfs(int v) {
 	if (u[v] == cc) return 0;
 	u[v] = cc;
