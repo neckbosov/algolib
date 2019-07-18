@@ -13,7 +13,6 @@ int main() {
 		cin >> x;
 		q.insert(x);
 	}
-	// finding by order
 	int q1;
 	cin >> q1;
 	for (int i = 0; i < q1; i++) {
@@ -22,7 +21,6 @@ int main() {
 		assert(k < n && k >= 0);
 		cout << *q.find_by_order(k) << '\n';
 	}
-	// order of key
 	int q2;
 	cin >> q2;
 	for (int i = 0; i < q2; i++) {
