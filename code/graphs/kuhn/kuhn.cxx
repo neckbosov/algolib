@@ -6,11 +6,9 @@ int cc;
 vector<int> e;
 vector<vector<int>> g;
 bool dfs(int v) {
-	// cout << v << endl;
 	if (u[v] == cc) return 0;
 	u[v] = cc;
 	for (int x : g[v]) {
-		// cout << v << ' ' << x << endl;
 		if (pa[x] == -1 || dfs(pa[x])) {
 			pa[x] = v;
 			if (pal[v] != -1) pa[pal[v]] = -1;
